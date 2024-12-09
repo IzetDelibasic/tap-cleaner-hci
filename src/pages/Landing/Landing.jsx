@@ -20,16 +20,16 @@ const Landing = () => {
         </span>
         <nav className="ml-auto gap-4 sm:gap-6 hidden sm:flex">
           <Link
-            to="/login"
-            className="font-cabin hover:text-emerald-600 duration-300 ease-in-out"
-          >
-            Login
-          </Link>
-          <Link
             to="/register"
             className="font-cabin hover:text-emerald-600 duration-300 ease-in-out"
           >
-            Register
+            Pridruži se
+          </Link>
+          <Link
+            to="/login"
+            className="font-cabin hover:text-emerald-600 duration-300 ease-in-out"
+          >
+            Već ste korisnik?
           </Link>
         </nav>
       </header>
@@ -105,7 +105,7 @@ const Landing = () => {
                 <CustomButton
                   className="relative bg-emerald-300 text-white font-medium py-[1rem] lg:px-[2.5rem] px-[2.5rem] md:px-[1.5rem] mr-0 mb-[20px] sm:mb-0 rounded-[3rem] group overflow-hidden z-[1] text-nowrap"
                   iconClassName="group-hover:text-white ml-[10px]"
-                  title="Clean on Tap"
+                  title="Čistoća Klikom"
                   titleClassName="group-hover:text-white font-subtitle"
                 >
                   <div className="absolute inset-0 bg-black w-full transform origin-right transition-transform duration-300 group-hover:scale-x-0 z-[-1]"></div>
@@ -117,7 +117,7 @@ const Landing = () => {
       </main>
       <footer className="py-6 w-full items-center px-4 md:px-6 border-t">
         <p className="text-xs font-montserrat">
-          &copy; 2024 Tap Cleaner. All rights reserved.
+          &copy; 2025 Tap Cleaner. All rights reserved.
         </p>
       </footer>
     </div>

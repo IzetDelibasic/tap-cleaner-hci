@@ -10,6 +10,8 @@ import axios from "axios";
 import { FormRow } from "../../components";
 // -Environment-
 import { environment } from "../../environments/environments";
+// -Icons-
+import { IoArrowBack } from "react-icons/io5";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -74,6 +76,13 @@ const Login = () => {
         </div>
       </div>
       <div className="bg-white bg-opacity-80 xl:w-[25%] w-[97%] sm:w-[50%] md:w-[40%] p-8 rounded-[10px] rounded-bl-none flex flex-col items-center">
+        <Link
+          to="/"
+          className="self-start flex justify-center items-center hover:text-emerald-600 ease-in-out duration-300"
+        >
+          <IoArrowBack className="h-4 w-4 mr-1" />
+          <p className="text-sm font-subtitle">Početna</p>
+        </Link>
         <h1 className="text-2xl font-bold text-bluePurple uppercase mb-4 text-center">
           Login
         </h1>
@@ -91,7 +100,7 @@ const Login = () => {
           <FormRow
             type="password"
             name="password"
-            labelText="Password"
+            labelText="Lozinka"
             onChange={handleInputChange}
           />
           <button
@@ -106,9 +115,9 @@ const Login = () => {
           </button>
         </Form>
         <div className="pt-2 font-montserrat">
-          Not a member yet?
+          Nemate račun?
           <Link to="/register" className="ml-1 font-medium text-emerald-600">
-            Register
+            Registracija
           </Link>
         </div>
       </div>

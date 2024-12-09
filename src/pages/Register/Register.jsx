@@ -10,6 +10,8 @@ import { FormRow } from "../../components";
 import axios from "axios";
 // -Environment-
 import { environment } from "../../environments/environments";
+// -Icons-
+import { IoArrowBack } from "react-icons/io5";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -88,6 +90,13 @@ const Register = () => {
         </div>
       </div>
       <div className="bg-white bg-opacity-80 xl:w-[25%] w-[97%] sm:w-[50%] md:w-[40%] p-8 rounded-[10px] rounded-bl-none flex flex-col items-center">
+        <Link
+          to="/"
+          className="self-start flex justify-center items-center hover:text-emerald-600 ease-in-out duration-300"
+        >
+          <IoArrowBack className="h-4 w-4 mr-1" />
+          <p className="text-sm font-subtitle">Početna</p>
+        </Link>
         <h1 className="text-2xl font-bold text-bluePurple uppercase mb-4 text-center font-montserrat">
           Register
         </h1>
@@ -99,13 +108,13 @@ const Register = () => {
           <FormRow
             type="text"
             name="firstName"
-            labelText="First Name"
+            labelText="Ime"
             onChange={handleInputChange}
           />
           <FormRow
             type="text"
             name="lastName"
-            labelText="Last Name"
+            labelText="Prezime"
             onChange={handleInputChange}
           />
           <FormRow
@@ -124,7 +133,7 @@ const Register = () => {
           <FormRow
             type="password"
             name="password"
-            labelText="Password"
+            labelText="Lozinka"
             onChange={handleInputChange}
           />
 
@@ -140,9 +149,9 @@ const Register = () => {
           </button>
         </Form>
         <div className="pt-4 font-montserrat">
-          Already a member?
+          Već ste registrovani?
           <Link to="/login" className="ml-1 font-medium text-emerald-600">
-            Login
+            Prijava
           </Link>
         </div>
       </div>
