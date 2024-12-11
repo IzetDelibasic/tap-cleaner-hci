@@ -97,7 +97,7 @@ const Profile = () => {
       <Navbar />
       <h1 className="my-6 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl text-center">
         <span className="text-transparent bg-clip-text bg-gradient-to-r to-gray-400 from-emerald-600">
-          Profile Page
+          Profil Korisnika
         </span>
       </h1>
       <div className="my-4 bg-white w-[90%] md:w-[70%] lg:w-[55%] text-black text-center border-[1px] border-gray-300 mx-auto font-montserrat p-4 rounded-md shadow-2xl flex flex-col">
@@ -137,7 +137,7 @@ const Profile = () => {
               value={editableData.firstName}
               onChange={handleInputChange}
               className="border rounded-lg p-2 w-full mb-2"
-              placeholder="First Name"
+              placeholder="Ime"
             />
             <input
               type="text"
@@ -145,7 +145,7 @@ const Profile = () => {
               value={editableData.lastName}
               onChange={handleInputChange}
               className="border rounded-lg p-2 w-full mb-2"
-              placeholder="Last Name"
+              placeholder="Prezime"
             />
             <input
               type="text"
@@ -153,19 +153,19 @@ const Profile = () => {
               value={editableData.imageUrl}
               onChange={handleInputChange}
               className="border rounded-lg p-2 w-full mb-2"
-              placeholder="Image URL"
+              placeholder="URL za sliku"
             />
             <button
               onClick={handleUpdate}
               className="bg-emerald-600 text-white font-medium py-2 px-2 sm:px-4 rounded-3xl hover:bg-emerald-800 transition duration-300 ease-in-out"
             >
-              Save Changes
+              Sačuvaj
             </button>
             <button
               onClick={() => setIsEditing(false)}
               className="bg-gray-600 text-white font-medium py-2 px-4 rounded-3xl hover:bg-gray-800 transition duration-300 ease-in-out ml-2"
             >
-              Cancel
+              Poništi
             </button>
           </div>
         ) : (
@@ -173,7 +173,7 @@ const Profile = () => {
             onClick={() => setIsEditing(true)}
             className="bg-emerald-600 text-white w-[55%] sm:w-[30%] mx-auto font-medium py-2 px-4 rounded-3xl hover:bg-emerald-800 transition duration-300 ease-in-out mt-4"
           >
-            Edit Profile
+            Uredi Profil
           </button>
         )}
       </div>

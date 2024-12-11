@@ -36,8 +36,7 @@ const Navbar = () => {
           <ul className="flex flex-col md:flex-row md:space-x-6 mt-4 md:mt-0 text-white">
             {Links.map(
               (link, index) =>
-                (link.title !== "Container Section" ||
-                  userRole === "Admin") && (
+                (link.title !== "Admin Panel" || userRole === "Admin") && (
                   <li key={index}>
                     <Link
                       to={link.href}

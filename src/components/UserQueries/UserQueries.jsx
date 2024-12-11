@@ -50,7 +50,11 @@ const UserQueries = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">User Queries</h1>
+      <h1 className="my-6 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl text-center">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r to-gray-400 from-emerald-600">
+          Vaši Upiti
+        </span>
+      </h1>
       {queries.length === 0 ? (
         <p>No queries found.</p>
       ) : (
@@ -58,7 +62,7 @@ const UserQueries = () => {
           {queries.map((item, index) => (
             <li
               key={index}
-              className="p-4 border rounded shadow-md flex items-start space-x-4"
+              className="p-4 border rounded shadow-md flex items-start space-x-4 font-montserrat w-[80%] md:w-[90%] mx-auto"
             >
               <img
                 src={item.user.imageUrl}

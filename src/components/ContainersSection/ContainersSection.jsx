@@ -21,7 +21,7 @@ const ContainersSection = () => {
         const loggedInUserData = localStorage.getItem("loggedInUserData");
 
         if (!loggedInUserData) {
-          console.error("User data not found in local storage.");
+          console.error("Podaci korisnika nisu pronađeni u lokalnoj pohrani.");
           return;
         }
 
@@ -29,7 +29,7 @@ const ContainersSection = () => {
         const token = parsedUserData.jwtToken;
 
         if (!token) {
-          throw new Error("Token not found in local storage.");
+          throw new Error("Vaša sesija nije ispravna. Pokušajte ponovno!");
         }
 
         const containersData = await fetchContainers(token);
@@ -69,7 +69,7 @@ const ContainersSection = () => {
       const loggedInUserData = localStorage.getItem("loggedInUserData");
 
       if (!loggedInUserData) {
-        toast.error("User data not found in local storage.");
+        toast.error("Podaci korisnika nisu pronađeni u lokalnoj pohrani.");
         return;
       }
 
@@ -78,13 +78,13 @@ const ContainersSection = () => {
       const userEmail = parsedUserData.email;
 
       if (!token) {
-        throw new Error("Token not found in local storage.");
+        throw new Error("Token nije pronađen u lokalnoj pohrani.");
       }
 
       const container = containers[index];
 
       if (!container) {
-        throw new Error("Container not found.");
+        throw new Error("Kontejner nije pronađen.");
       }
 
       await axios.post(
@@ -101,19 +101,17 @@ const ContainersSection = () => {
       );
 
       toast.success(
-        "Report successfully sent, our team will react as soon as possible."
+        "Vaša prijava je uspješno poslana, naš tim će reagovati u što kraćem roku."
       );
     } catch (err) {
-      toast.error(
-        "An error occurred while registering the container: " + err.message
-      );
+      toast.error("Greška nastala prilikom prijave kontejnera: " + err.message);
     }
   };
 
   if (loading) {
     return (
       <div className="text-center font-montserrat text-xl mt-6">
-        Containers loading...
+        Učitavanje kontejnera...
       </div>
     );
   }
@@ -130,13 +128,13 @@ const ContainersSection = () => {
     <div>
       <h1 className="my-6 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl text-center">
         <span className="text-transparent bg-clip-text bg-gradient-to-r to-gray-400 from-emerald-600">
-          Containers
+          Kontejneri
         </span>
       </h1>
       <div className="p-4">
         <input
           type="text"
-          placeholder="Search by address..."
+          placeholder="Pretraga putem adrese.."
           value={searchQuery}
           onChange={handleSearchChange}
           className="border rounded-lg p-2 w-full mb-4"
@@ -151,23 +149,23 @@ const ContainersSection = () => {
             >
               <h2 className="text-xl font-bold mb-2">{container.name || ""}</h2>
               <div className="flex justify-center items-center mb-2">
-                <p className="font-medium mr-2">Address:</p>
+                <p className="font-medium mr-2">Adresa:</p>
                 <p>{container.adress || ""}</p>
               </div>
               <div className="flex justify-center items-center mb-2">
-                <p className="font-medium mr-2">Coordinates:</p>
+                <p className="font-medium mr-2">Koordinate:</p>
                 <p>{container.coordinates || ""}</p>
               </div>
               <div className="flex justify-center items-center mb-2">
-                <p className="font-medium mr-2">Type:</p>
+                <p className="font-medium mr-2">Tip:</p>
                 <p>{container.type || ""}</p>
               </div>
               <div className="flex justify-center items-center mb-2">
-                <p className="font-medium mr-2">Condition:</p>
+                <p className="font-medium mr-2">Stanje:</p>
                 <p>{container.condition || ""}</p>
               </div>
               <div className="flex justify-center items-center mb-2">
-                <p className="font-medium mr-2">Number of Reports:</p>
+                <p className="font-medium mr-2">Broj prijava:</p>
                 <p>{container.numberOfReports || 0}</p>
               </div>
               <div className="flex justify-center gap-4 mt-4">
@@ -175,20 +173,20 @@ const ContainersSection = () => {
                   onClick={() => handleSearchLocation(container.coordinates)}
                   className="bg-emerald-600 text-white font-medium py-2 px-4 rounded-3xl hover:bg-emerald-800 transition duration-300 ease-in-out"
                 >
-                  Location
+                  Lokacija
                 </button>
                 <button
                   onClick={() => handleReportCondition(index)}
                   className="bg-red-600 text-white font-medium py-2 px-4 rounded-3xl hover:bg-red-800 transition duration-300 ease-in-out"
                 >
-                  Report
+                  Prijavi
                 </button>
               </div>
             </div>
           ))
         ) : (
           <p className="text-center font-montserrat text-xl">
-            No containers available.
+            Trenutno nema dostupnih kontejnera.
           </p>
         )}
       </div>

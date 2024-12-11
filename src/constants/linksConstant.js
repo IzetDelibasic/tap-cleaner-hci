@@ -1,18 +1,18 @@
 export const Links = [
   {
-    title: "Containers",
+    title: "Kontejneri",
     href: "/dashboard",
   },
   {
-    title: "Support",
+    title: "Podrška",
     href: "/support",
   },
   {
-    title: "Profile",
+    title: "Profil",
     href: "/profile",
   },
   {
-    title: "Container Section",
+    title: "Admin Panel",
     href: "/admin",
   },
 ];
