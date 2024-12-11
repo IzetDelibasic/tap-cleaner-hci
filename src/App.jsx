@@ -8,6 +8,7 @@ import {
   Login,
   Profile,
   Register,
+  Support,
 } from "./pages/index.js";
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <Admin />,
+  },
+  {
+    path: "/support",
+    element: <Support />,
   },
 ]);
 

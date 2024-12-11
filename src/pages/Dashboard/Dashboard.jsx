@@ -3,10 +3,10 @@ import { ContainersSection, Navbar } from "../../components";
 
 const Dashboard = () => {
   return (
-    <div>
+    <>
       <Navbar />
       <ContainersSection />
-    </div>
+    </>
   );
 };
 

@@ -11,6 +11,7 @@ const CustomButton = ({
   href,
   children,
   onClick,
+  type = "button",
 }) => {
   const handleClick = () => {
     if (href) {
@@ -26,7 +27,7 @@ const CustomButton = ({
     <button
       onClick={handleClick}
       title={title}
-      type="button"
+      type={type}
       className={`px-6 lg:px-0 py-2 rounded-3xl shadow-md group ${className}`}
       style={{
         display: "flex",
@@ -61,6 +62,7 @@ CustomButton.propTypes = {
   href: PropTypes.string,
   children: PropTypes.node,
   onClick: PropTypes.func,
+  type: PropTypes.oneOf(["button", "submit", "reset"]).isRequired,
 };
 
 export default CustomButton;
