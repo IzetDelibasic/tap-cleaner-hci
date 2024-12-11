@@ -1,5 +1,7 @@
 // -React-
-import { useState } from "react";
+import { useState, useRef } from "react";
+// -Axios-
+import axios from "axios";
 // -Components-
 import CustomButton from "../Button/Button";
 // -Environments-
@@ -7,6 +9,7 @@ import { environment } from "../../environments/environments";
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef(null);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -27,25 +30,27 @@ const ContactForm = () => {
     const payload = { email, query };
 
     try {
-      const response = await fetch(`${environment.apiBaseUrl}/User/AddQuery`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        throw new Error("Poruka nije poslana uspješno!");
-      }
+      const response = await axios.post(
+        `${environment.apiBaseUrl}/Query/AddQuery`,
+        payload,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       alert("Vaša poruka je poslana, zahvaljujemo se na Vašem upitu!");
 
-      if (event.currentTarget) {
-        event.currentTarget.reset();
+      if (formRef.current) {
+        formRef.current.reset();
       }
     } catch (error) {
-      alert(`Error: ${error.message}`);
+      alert(
+        `Došlo je do greške prilikom slanja poruke: ${
+          error.response?.data?.message || error.message
+        }`
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -56,20 +61,21 @@ const ContactForm = () => {
       <h2 className="text-2xl font-bold mb-4 font-montserrat text-center">
         Kontaktirajte nas
       </h2>
-      <form onSubmit={onSubmit} className="flex flex-col gap-4">
+      <form onSubmit={onSubmit} className="flex flex-col gap-4" ref={formRef}>
+        {" "}
         <div>
           <label
             htmlFor="message"
-            className="block text-sm font-medium mb-2 text-center"
+            className="block text-sm font-medium mb-2 text-center font-montserrat"
           >
             Vaša poruka ili upit za nas:
           </label>
           <textarea
             id="message"
             name="message"
-            placeholder="Type your query or question here..."
+            placeholder="Upišite svoj upit ili sugestiju.."
             required
-            className="w-full min-h-[150px] p-2 border rounded border-gray-300"
+            className="w-full min-h-[150px] p-2 border rounded border-gray-300 font-montserrat"
           />
         </div>
         <CustomButton

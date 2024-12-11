@@ -7,3 +7,5 @@ export { default as ContainersSection } from "./ContainersSection/ContainersSect
 export { default as FormRow } from "./FormRow/FormRow";
 
 export { default as Navbar } from "./Navbar/Navbar";
+
+export { default as UserQueries } from "./UserQueries/UserQueries";
