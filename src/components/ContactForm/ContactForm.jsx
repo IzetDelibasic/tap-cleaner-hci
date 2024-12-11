@@ -52,12 +52,17 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
+    <div className="w-[85%] md:max-w-xl mx-auto p-6 mt-6 rounded-lg shadow-lg border-[1px] border-emerald-600">
+      <h2 className="text-2xl font-bold mb-4 font-montserrat text-center">
+        Kontaktirajte nas
+      </h2>
       <form onSubmit={onSubmit} className="flex flex-col gap-4">
         <div>
-          <label htmlFor="message" className="block text-sm font-medium mb-2">
-            Your Message
+          <label
+            htmlFor="message"
+            className="block text-sm font-medium mb-2 text-center"
+          >
+            Vaša poruka ili upit za nas:
           </label>
           <textarea
             id="message"
@@ -69,8 +74,8 @@ const ContactForm = () => {
         </div>
         <CustomButton
           type="submit"
-          title={isSubmitting ? "Sending..." : "Send Message"}
-          className="px-6 py-2 rounded-3xl shadow-md bg-blue-500 text-white hover:bg-blue-600"
+          title={isSubmitting ? "Slanje Upita..." : "Pošaljite Vaš Upit"}
+          className="px-6 py-2 rounded-3xl shadow-md bg-emerald-600 text-white hover:bg-emerald-700 ease-in-out duration-300 font-montserrat"
           disabled={isSubmitting}
         />
       </form>
