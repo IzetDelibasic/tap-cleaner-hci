@@ -52,10 +52,10 @@ const Login = () => {
         "loggedInUserData",
         JSON.stringify(loggedInUserData)
       );
-      toast.success("Login successful!");
+      toast.success("Vaša prijava je uspješna!");
       navigate("/dashboard");
     } catch (err) {
-      toast.error("An error occurred");
+      toast.error("Greška prilikom prijave. Pokušajte ponovno!");
       console.error(err);
     }
   };
@@ -84,7 +84,7 @@ const Login = () => {
           <p className="text-sm font-subtitle">Početna</p>
         </Link>
         <h1 className="text-2xl font-bold text-bluePurple uppercase mb-4 text-center">
-          Login
+          Prijava
         </h1>
         <Form
           className="flex flex-col items-center"
@@ -110,7 +110,7 @@ const Login = () => {
             type="submit"
             disabled={!formValid}
           >
-            <div className="">Login</div>
+            <div className="">Prijavi se</div>
             <div className="absolute inset-0 bg-black w-full transform origin-right transition-transform duration-300 group-hover:scale-x-0 z-[-1]"></div>
           </button>
         </Form>

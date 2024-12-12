@@ -30,7 +30,7 @@ const UserQueries = () => {
         );
         setQueries(response.data);
       } catch (error) {
-        setError("Failed to fetch user queries.");
+        setError("Greška prilikom preuzimanja podataka korisnika.");
         console.error("Error details:", error.response?.data || error.message);
       } finally {
         setLoading(false);
@@ -40,12 +40,14 @@ const UserQueries = () => {
     if (loggedInUser && token) {
       fetchQueries();
     } else {
-      setError("User is not logged in or token is missing.");
+      setError(
+        "Greška prilikom preuzimanja korisničkih podataka i tokena sesije."
+      );
       setLoading(false);
     }
   }, [loggedInUser, token]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div>Učitavanje...</div>;
   if (error) return <div>{error}</div>;
 
   return (
@@ -56,7 +58,7 @@ const UserQueries = () => {
         </span>
       </h1>
       {queries.length === 0 ? (
-        <p>No queries found.</p>
+        <p>Trenutno nema upita.</p>
       ) : (
         <ul className="space-y-4">
           {queries.map((item, index) => (

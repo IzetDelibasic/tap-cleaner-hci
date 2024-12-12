@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 // -Pages-
 import {
   Admin,
+  AdminQueries,
   Dashboard,
   Landing,
   Login,
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: "/support",
     element: <Support />,
+  },
+  {
+    path: "/admin/all-queries",
+    element: <AdminQueries />,
   },
 ]);
 

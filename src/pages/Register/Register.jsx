@@ -66,10 +66,10 @@ const Register = () => {
 
     try {
       await axios.post(`${environment.apiBaseUrl}/User/Register`, userData);
-      toast.success("Registration successful!");
+      toast.success("Vaša registracija je uspješna!");
       navigate("/login");
     } catch (err) {
-      toast.error("An error occurred!");
+      toast.error("Greška prilikom registracije. Pokušajte ponovno!");
       console.error(err);
     }
   };
@@ -98,7 +98,7 @@ const Register = () => {
           <p className="text-sm font-subtitle">Početna</p>
         </Link>
         <h1 className="text-2xl font-bold text-bluePurple uppercase mb-4 text-center font-montserrat">
-          Register
+          Registracija
         </h1>
         <Form
           method="post"
@@ -144,7 +144,7 @@ const Register = () => {
             type="submit"
             disabled={!formValid}
           >
-            <div className="">Register</div>
+            <div className="">Registruj se</div>
             <div className="absolute inset-0 bg-black w-full transform origin-right transition-transform duration-300 group-hover:scale-x-0 z-[-1]"></div>
           </button>
         </Form>
