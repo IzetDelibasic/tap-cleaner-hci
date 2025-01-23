@@ -10,6 +10,7 @@ import {
   Profile,
   Register,
   Support,
+  AddContainer,
 } from "./pages/index.js";
 
 const router = createBrowserRouter([
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/all-queries",
     element: <AdminQueries />,
+  },
+  {
+    path: "/admin/add-container",
+    element: <AddContainer />,
   },
 ]);
 

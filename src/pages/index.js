@@ -4,6 +4,8 @@ export { default as AdminQueries } from "./AdminQueries/AdminQueries";
 
 export { default as Dashboard } from "./Dashboard/Dashboard";
 
+export { default as AddContainer } from "./AddContainer/AddContainer";
+
 export { default as Landing } from "./Landing/Landing";
 
 export { default as Login } from "./Login/Login";
