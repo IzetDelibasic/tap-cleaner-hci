@@ -1,15 +1,18 @@
 // -React-
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 // -Axios-
 import axios from "axios";
 // -Components-
 import CustomButton from "../Button/Button";
 // -Environments-
 import { environment } from "../../environments/environments";
+import { toast } from "react-toastify";
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef(null);
+  const navigate = useNavigate();
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -40,13 +43,14 @@ const ContactForm = () => {
         }
       );
 
-      alert("Vaša poruka je poslana, zahvaljujemo se na Vašem upitu!");
+      navigate("/support");
+      toast.success("Vaša poruka je poslana, zahvaljujemo se na Vašem upitu!");
 
       if (formRef.current) {
         formRef.current.reset();
       }
     } catch (error) {
-      alert(
+      toast.error(
         `Došlo je do greške prilikom slanja poruke: ${
           error.response?.data?.message || error.message
         }`

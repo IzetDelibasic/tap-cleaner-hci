@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 // -Environments-
 import { environment } from "../../environments/environments";
+import { Link } from "react-router-dom";
+import CustomButton from "../Button/Button";
 
 const UserQueries = () => {
   const [queries, setQueries] = useState([]);
@@ -12,7 +14,6 @@ const UserQueries = () => {
 
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUserData"));
   const userEmail = loggedInUser?.email;
-  const token = loggedInUser?.jwtToken;
 
   useEffect(() => {
     const fetchQueries = async () => {
@@ -66,9 +67,16 @@ const UserQueries = () => {
     <div className="p-4">
       <h1 className="my-6 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl text-center">
         <span className="text-transparent bg-clip-text bg-gradient-to-r to-gray-400 from-emerald-600">
-          Vaši Upiti
+          Upiti - {userEmail}
         </span>
       </h1>
+      <Link to="/admin/add-container">
+        <CustomButton
+          className="bg-emerald-600 hover:bg-emerald-700 ease-in-out duration-300 text-white font-medium py-2 px-6 rounded-3xl md:w-[30%] lg:w-[20%] mx-auto my-6"
+          title="Dodaj Upit"
+          titleClassName="group-hover:text-white font-subtitle"
+        ></CustomButton>
+      </Link>
       {queries.length === 0 ? (
         <p>Trenutno nema upita.</p>
       ) : (
