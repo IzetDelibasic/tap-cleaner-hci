@@ -16,32 +16,6 @@ const ContainersSection = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const loggedInUserData = localStorage.getItem("loggedInUserData");
-
-        if (!loggedInUserData) {
-          console.error("Podaci korisnika nisu pronađeni u lokalnoj pohrani.");
-          return;
-        }
-
-        const parsedUserData = JSON.parse(loggedInUserData);
-        const token = parsedUserData.jwtToken;
-
-        if (!token) {
-          throw new Error("Vaša sesija nije ispravna. Pokušajte ponovno!");
-        }
-
-        const containersData = await fetchContainers(token);
-        setContainers(containersData);
-        setFilteredContainers(containersData);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, []);
 
@@ -55,6 +29,32 @@ const ContainersSection = () => {
       setFilteredContainers(containers);
     }
   }, [searchQuery, containers]);
+
+  const fetchData = async () => {
+    try {
+      const loggedInUserData = localStorage.getItem("loggedInUserData");
+
+      if (!loggedInUserData) {
+        console.error("Podaci korisnika nisu pronađeni u lokalnoj pohrani.");
+        return;
+      }
+
+      const parsedUserData = JSON.parse(loggedInUserData);
+      const token = parsedUserData.jwtToken;
+
+      if (!token) {
+        throw new Error("Vaša sesija nije ispravna. Pokušajte ponovno!");
+      }
+
+      const containersData = await fetchContainers(token);
+      setContainers(containersData);
+      setFilteredContainers(containersData);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -103,8 +103,12 @@ const ContainersSection = () => {
       toast.success(
         "Vaša prijava je uspješno poslana, naš tim će reagovati u što kraćem roku."
       );
-    } catch (err) {
-      toast.error("Greška nastala prilikom prijave kontejnera: " + err.message);
+
+      await fetchData();
+    } catch (error) {
+      toast.error(
+        "Greška nastala prilikom prijave kontejnera. Ukoliko ste već prijavili kontejner pričekajte intervenciju službe!"
+      );
     }
   };
 
