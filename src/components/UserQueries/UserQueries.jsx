@@ -15,8 +15,27 @@ const UserQueries = () => {
   const token = loggedInUser?.jwtToken;
 
   useEffect(() => {
-    const emailString = `"${userEmail}"`;
     const fetchQueries = async () => {
+      const loggedInUserData = localStorage.getItem("loggedInUserData");
+
+      if (!loggedInUserData) {
+        setError("Greška prilikom preuzimanja korisničkih podataka.");
+        setLoading(false);
+        return;
+      }
+
+      const loggedInUser = JSON.parse(loggedInUserData);
+      const userEmail = loggedInUser?.email;
+      const token = loggedInUser?.jwtToken;
+
+      if (!userEmail || !token) {
+        setError("Greška prilikom preuzimanja korisničkih podataka i tokena.");
+        setLoading(false);
+        return;
+      }
+
+      const emailString = `"${userEmail}"`;
+
       try {
         const response = await axios.post(
           `${environment.apiBaseUrl}/Query/GetUserQueries`,
@@ -37,15 +56,8 @@ const UserQueries = () => {
       }
     };
 
-    if (loggedInUser && token) {
-      fetchQueries();
-    } else {
-      setError(
-        "Greška prilikom preuzimanja korisničkih podataka i tokena sesije."
-      );
-      setLoading(false);
-    }
-  }, [loggedInUser, token]);
+    fetchQueries();
+  }, []);
 
   if (loading) return <div>Učitavanje...</div>;
   if (error) return <div>{error}</div>;
