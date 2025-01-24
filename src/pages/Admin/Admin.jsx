@@ -142,8 +142,15 @@ const Admin = () => {
       </h1>
       <Link to="/admin/add-container">
         <CustomButton
-          className="bg-emerald-600 hover:bg-emerald-700 ease-in-out duration-300 text-white font-medium py-2 px-6 rounded-3xl md:w-[30%] lg:w-[20%] mx-auto my-6"
+          className="bg-emerald-600 hover:bg-emerald-700 ease-in-out duration-300 text-white font-medium py-2 px-6 rounded-3xl md:w-[30%] lg:w-[20%] mx-auto my-4"
           title="Dodaj Kontejner"
+          titleClassName="group-hover:text-white font-subtitle"
+        ></CustomButton>
+      </Link>
+      <Link to="/admin/all-queries">
+        <CustomButton
+          className="bg-emerald-600 hover:bg-emerald-700 ease-in-out duration-300 text-white font-medium py-2 px-6 rounded-3xl md:w-[30%] lg:w-[20%] mx-auto my-4"
+          title="Pregled Upita"
           titleClassName="group-hover:text-white font-subtitle"
         ></CustomButton>
       </Link>
