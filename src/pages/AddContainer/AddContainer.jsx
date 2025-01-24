@@ -3,6 +3,7 @@ import { Navbar } from "../../components";
 import axios from "axios";
 import { environment } from "../../environments/environments";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddContainer = () => {
   const [newContainer, setNewContainer] = useState({
@@ -10,6 +11,8 @@ const AddContainer = () => {
     coordinates: "",
     type: "",
   });
+
+  const navigate = useNavigate();
 
   const addContainer = async () => {
     try {
@@ -37,10 +40,10 @@ const AddContainer = () => {
           },
         }
       );
-
-      toast.success("Container added successfully.");
+      navigate("/dashboard");
+      toast.success("Kontejner uspješno dodan.");
     } catch (err) {
-      toast.error("Error adding container: " + err.message);
+      toast.error("Greška pri dodavanju: " + err.message);
     }
   };
 
@@ -49,7 +52,7 @@ const AddContainer = () => {
       <Navbar />
       <h1 className="my-6 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl text-center">
         <span className="text-transparent bg-clip-text bg-gradient-to-r to-gray-400 from-emerald-600">
-          Dodaj Kontejnner
+          Dodaj Kontejner
         </span>
       </h1>
       <div className="bg-white border-[1px] border-lightGreen p-6 rounded-lg shadow-md mt-6 md:w-[60%] w-[90%] mx-auto font-montserrat flex flex-col">
@@ -98,7 +101,7 @@ const AddContainer = () => {
         </div>
         <button
           onClick={addContainer}
-          className="bg-gradient-to-r to-emerald-500 from-emerald-700 text-white font-medium py-2 px-6 rounded-3xl md:w-[40%] mx-auto"
+          className="bg-emerald-600 hover:bg-emerald-700 ease-in-out duration-300 text-white font-medium py-2 px-6 rounded-3xl md:w-[40%] mx-auto"
         >
           Dodaj
         </button>
