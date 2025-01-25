@@ -14,6 +14,8 @@ export { default as Login } from "./Login/Login";
 
 export { default as Profile } from "./Profile/Profile";
 
+export { default as QueryAnswer } from "./QueryAnswer/QueryAnswer";
+
 export { default as Register } from "./Register/Register";
 
 export { default as Support } from "./Support/Support";

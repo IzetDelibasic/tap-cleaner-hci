@@ -18,41 +18,15 @@ const Admin = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const loggedInUserData = localStorage.getItem("loggedInUserData");
-
-        if (!loggedInUserData) {
-          console.error("User data not found in local storage.");
-          return;
-        }
-
-        const parsedUserData = JSON.parse(loggedInUserData);
-        const token = parsedUserData.jwtToken;
-
-        if (!token) {
-          throw new Error("Token not found in local storage.");
-        }
-
-        const containersData = await fetchContainers(token);
-        setContainers(containersData);
-        setFilteredContainers(containersData);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, []);
 
-  const clearReports = async (containerName) => {
+  const fetchData = async () => {
     try {
       const loggedInUserData = localStorage.getItem("loggedInUserData");
 
       if (!loggedInUserData) {
-        console.error("User data not found in local storage.");
+        console.error("Korisnički podaci nisu pronađeni.");
         return;
       }
 
@@ -60,7 +34,33 @@ const Admin = () => {
       const token = parsedUserData.jwtToken;
 
       if (!token) {
-        throw new Error("Token not found in local storage.");
+        throw new Error("Token nije pronađen.");
+      }
+
+      const containersData = await fetchContainers(token);
+      setContainers(containersData);
+      setFilteredContainers(containersData);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const clearReports = async (containerName) => {
+    try {
+      const loggedInUserData = localStorage.getItem("loggedInUserData");
+
+      if (!loggedInUserData) {
+        console.error("Korisnički podaci nisu pronađeni.");
+        return;
+      }
+
+      const parsedUserData = JSON.parse(loggedInUserData);
+      const token = parsedUserData.jwtToken;
+
+      if (!token) {
+        throw new Error("Token nije pronađen.");
       }
 
       await axios.post(
@@ -74,11 +74,11 @@ const Admin = () => {
         }
       );
 
-      toast.success(`Reports for ${containerName} cleared successfully.`);
+      toast.success(`Prijava za ${containerName} uspješno očišćena.`);
       const containersData = await fetchContainers(token);
       setFilteredContainers(containersData);
     } catch (err) {
-      toast.error("Error clearing reports: " + err.message);
+      toast.error("Greška pri čišćenju kontejnera");
     }
   };
 
@@ -87,7 +87,7 @@ const Admin = () => {
       const loggedInUserData = localStorage.getItem("loggedInUserData");
 
       if (!loggedInUserData) {
-        console.error("User data not found in local storage.");
+        console.error("Korisnički podaci nisu pronađeni.");
         return;
       }
 
@@ -95,7 +95,7 @@ const Admin = () => {
       const token = parsedUserData.jwtToken;
 
       if (!token) {
-        throw new Error("Token not found in local storage.");
+        throw new Error("Token nije pronađen.");
       }
 
       await axios.request({
@@ -108,11 +108,11 @@ const Admin = () => {
         data: containerName,
       });
 
-      toast.success(`Container ${containerName} deleted successfully.`);
+      toast.success(`Kontejner ${containerName} uspješno obrisan.`);
       const containersData = await fetchContainers(token);
       setFilteredContainers(containersData);
     } catch (err) {
-      toast.error("Error deleting container: " + err.message);
+      toast.error("Greška pri brisanju kontejnera.");
     }
   };
 
@@ -163,23 +163,23 @@ const Admin = () => {
             >
               <h2 className="text-xl font-bold mb-2">{container.name || ""}</h2>
               <div className="flex justify-center items-center mb-2">
-                <p className="font-medium mr-2">Address:</p>
+                <p className="font-medium mr-2">Adresa:</p>
                 <p>{container.adress || ""}</p>
               </div>
               <div className="flex justify-center items-center mb-2">
-                <p className="font-medium mr-2">Coordinates:</p>
+                <p className="font-medium mr-2">Koordinate:</p>
                 <p>{container.coordinates || ""}</p>
               </div>
               <div className="flex justify-center items-center mb-2">
-                <p className="font-medium mr-2">Type:</p>
+                <p className="font-medium mr-2">Tip:</p>
                 <p>{container.type || ""}</p>
               </div>
               <div className="flex justify-center items-center mb-2">
-                <p className="font-medium mr-2">Condition:</p>
+                <p className="font-medium mr-2">Stanje:</p>
                 <p>{container.condition || ""}</p>
               </div>
               <div className="flex justify-center items-center mb-2">
-                <p className="font-medium mr-2">Number of Reports:</p>
+                <p className="font-medium mr-2">Broj prijava:</p>
                 <p>{container.numberOfReports || 0}</p>
               </div>
               <div className="flex justify-center">
@@ -187,13 +187,13 @@ const Admin = () => {
                   onClick={() => clearReports(container.name)}
                   className="bg-emerald-600 hover:bg-emerald-800 duration-300 ease-in-out text-white font-medium py-2 px-6 rounded-3xl text-xs md:text-sm mr-2"
                 >
-                  Clear
+                  Očisti
                 </button>
                 <button
                   onClick={() => deleteContainer(container.name)}
                   className="bg-red-600 hover:bg-red-800 duration-300 ease-in-out text-white font-medium py-2 px-6 rounded-3xl text-xs md:text-sm"
                 >
-                  Delete
+                  Obriši
                 </button>
               </div>
             </div>

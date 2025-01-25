@@ -12,6 +12,7 @@ import {
   Support,
   AddContainer,
   AddQuery,
+  QueryAnswer,
 } from "./pages/index.js";
 
 const router = createBrowserRouter([
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: "/add-query",
     element: <AddQuery />,
+  },
+  {
+    path: "/admin/query-answer",
+    element: <QueryAnswer />,
   },
 ]);
 

@@ -50,7 +50,7 @@ const Profile = () => {
       const loggedInUserData = localStorage.getItem("loggedInUserData");
 
       if (!loggedInUserData) {
-        toast.error("User data not found in local storage.");
+        toast.error("Korisnički podaci nisu pronađeni.");
         return;
       }
 
@@ -59,7 +59,7 @@ const Profile = () => {
       const email = parsedUserData.email;
 
       if (!token) {
-        throw new Error("Token not found in local storage.");
+        throw new Error("Token nije pronađen.");
       }
 
       await axios.put(
@@ -76,10 +76,10 @@ const Profile = () => {
         ...userData,
         ...editableData,
       });
-      toast.success("Profile updated successfully.");
+      toast.success("Profil je uspješno ažuriran!");
       setIsEditing(false);
     } catch (err) {
-      toast.error(`An error occurred: ${err.message}`);
+      toast.error(`Greška prilikom ažuriranja profila!`);
     }
   };
 
