@@ -70,7 +70,7 @@ const UserQueries = () => {
           Upiti - {userEmail}
         </span>
       </h1>
-      <Link to="/admin/add-container">
+      <Link to="/add-query">
         <CustomButton
           className="bg-emerald-600 hover:bg-emerald-700 ease-in-out duration-300 text-white font-medium py-2 px-6 rounded-3xl md:w-[30%] lg:w-[20%] mx-auto my-6"
           title="Dodaj Upit"

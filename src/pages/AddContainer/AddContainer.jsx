@@ -89,16 +89,23 @@ const AddContainer = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Tip</label>
-          <input
-            type="text"
+        <label className="block text-sm font-medium text-gray-700">Tip</label>
+          <select
             value={newContainer.type}
             onChange={(e) =>
               setNewContainer({ ...newContainer, type: e.target.value })
             }
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
-          />
-        </div>
+          >
+            <option value="">-- Odaberite tip kontejnera --</option>
+            <option value="Plastika">Plastika</option>
+            <option value="Metal">Metal</option>
+            <option value="Biootpad">Biootpad</option>
+            <option value="Papir">Papir</option>
+            <option value="Staklo">Staklo</option>
+          </select>
+      </div>
+
         <button
           onClick={addContainer}
           className="bg-emerald-600 hover:bg-emerald-700 ease-in-out duration-300 text-white font-medium py-2 px-6 rounded-3xl md:w-[40%] mx-auto"
