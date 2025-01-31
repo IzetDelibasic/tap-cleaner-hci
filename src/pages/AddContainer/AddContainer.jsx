@@ -4,6 +4,8 @@ import axios from "axios";
 import { environment } from "../../environments/environments";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { IoArrowBack } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const AddContainer = () => {
   const [newContainer, setNewContainer] = useState({
@@ -50,6 +52,13 @@ const AddContainer = () => {
   return (
     <>
       <Navbar />
+      <Link
+        to="/admin"
+        className="self-start flex justify-start items-center hover:text-emerald-600 ease-in-out duration-300 mt-6 ml-4"
+      >
+        <IoArrowBack className="h-4 w-4 mr-1" />
+        <p className="text-sm font-subtitle">Nazad</p>
+      </Link>
       <h1 className="my-6 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl text-center">
         <span className="text-transparent bg-clip-text bg-gradient-to-r to-gray-400 from-emerald-600">
           Dodaj Kontejner
@@ -89,7 +98,7 @@ const AddContainer = () => {
           />
         </div>
         <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700">Tip</label>
+          <label className="block text-sm font-medium text-gray-700">Tip</label>
           <select
             value={newContainer.type}
             onChange={(e) =>
@@ -104,7 +113,7 @@ const AddContainer = () => {
             <option value="Papir">Papir</option>
             <option value="Staklo">Staklo</option>
           </select>
-      </div>
+        </div>
 
         <button
           onClick={addContainer}
