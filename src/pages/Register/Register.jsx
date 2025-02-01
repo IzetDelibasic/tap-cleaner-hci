@@ -12,6 +12,7 @@ import axios from "axios";
 import { environment } from "../../environments/environments";
 // -Icons-
 import { IoArrowBack } from "react-icons/io5";
+import { FaSpinner } from "react-icons/fa";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -20,6 +21,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [formValid, setFormValid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -54,6 +56,9 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formValid) return;
+
+    setIsLoading(true);
 
     const userData = {
       firstName,
@@ -71,6 +76,8 @@ const Register = () => {
     } catch (err) {
       toast.error("Greška prilikom registracije. Pokušajte ponovno!");
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -138,14 +145,17 @@ const Register = () => {
           />
 
           <button
-            className={`relative bg-emerald-600 text-white font-medium py-[1rem] px-[3.5rem] md:px-[4rem] lg:px-[5rem] mr-0 mb-[20px] md:mb-0 rounded-[3rem] group overflow-hidden z-[1] ${
-              !formValid && "opacity-50 cursor-not-allowed"
+            className={`relative bg-blue-500 text-white font-medium py-[1rem] px-[3.5rem] md:px-[4rem] lg:px-[5rem] mr-0 mb-[20px] md:mb-0 rounded-[3rem] group overflow-hidden z-[1] flex items-center justify-center ${
+              (!formValid || isLoading) && "opacity-50 cursor-not-allowed"
             }`}
             type="submit"
-            disabled={!formValid}
+            disabled={!formValid || isLoading}
           >
-            <div className="">Registruj se</div>
-            <div className="absolute inset-0 bg-black w-full transform origin-right transition-transform duration-300 group-hover:scale-x-0 z-[-1]"></div>
+            {isLoading ? (
+              <FaSpinner className="animate-spin h-5 w-5" />
+            ) : (
+              <div>Registruj se</div>
+            )}
           </button>
         </Form>
         <div className="pt-4 font-montserrat">

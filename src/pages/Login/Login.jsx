@@ -12,11 +12,13 @@ import { FormRow } from "../../components";
 import { environment } from "../../environments/environments";
 // -Icons-
 import { IoArrowBack } from "react-icons/io5";
+import { FaSpinner } from "react-icons/fa";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [formValid, setFormValid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -28,35 +30,29 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userData = {
-      email,
-      password,
-    };
     if (!formValid) return;
+
+    setIsLoading(true);
     try {
       const response = await axios.post(
         `${environment.apiBaseUrl}/User/Login`,
-        userData
+        { email, password }
       );
       const { token, rola } = response.data;
-      console.log(response.data);
-
-      const loggedInUserData = {
-        jwtToken: token,
-        email,
-        role: rola,
-      };
 
       localStorage.clear();
       localStorage.setItem(
         "loggedInUserData",
-        JSON.stringify(loggedInUserData)
+        JSON.stringify({ jwtToken: token, email, role: rola })
       );
+
       toast.success("Vaša prijava je uspješna!");
       navigate("/dashboard");
     } catch (err) {
       toast.error("Greška prilikom prijave. Pokušajte ponovno!");
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -86,11 +82,7 @@ const Login = () => {
         <h1 className="text-2xl font-bold text-bluePurple uppercase mb-4 text-center">
           Prijava
         </h1>
-        <Form
-          className="flex flex-col items-center"
-          method="post"
-          onSubmit={handleSubmit}
-        >
+        <form className="flex flex-col items-center" onSubmit={handleSubmit}>
           <FormRow
             type="email"
             name="email"
@@ -104,16 +96,19 @@ const Login = () => {
             onChange={handleInputChange}
           />
           <button
-            className={`relative bg-blue-500 text-white font-medium py-[1rem] px-[3.5rem] md:px-[4rem] lg:px-[5rem] mr-0 mb-[20px] md:mb-0 rounded-[3rem] group overflow-hidden z-[1] ${
-              !formValid && "opacity-50 cursor-not-allowed"
+            className={`relative bg-blue-500 text-white font-medium py-[1rem] px-[3.5rem] md:px-[4rem] lg:px-[5rem] mr-0 mb-[20px] md:mb-0 rounded-[3rem] group overflow-hidden z-[1] flex items-center justify-center ${
+              (!formValid || isLoading) && "opacity-50 cursor-not-allowed"
             }`}
             type="submit"
-            disabled={!formValid}
+            disabled={!formValid || isLoading}
           >
-            <div className="">Prijavi se</div>
-            <div className="absolute inset-0 bg-black w-full transform origin-right transition-transform duration-300 group-hover:scale-x-0 z-[-1]"></div>
+            {isLoading ? (
+              <FaSpinner className="animate-spin h-5 w-5" />
+            ) : (
+              <div>Prijavi se</div>
+            )}
           </button>
-        </Form>
+        </form>
         <div className="pt-2 font-montserrat">
           Nemate račun?
           <Link to="/register" className="ml-1 font-medium text-emerald-600">

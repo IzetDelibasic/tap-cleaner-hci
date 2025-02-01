@@ -1,11 +1,15 @@
+// -React-
 import { useState } from "react";
-import { Navbar } from "../../components";
-import axios from "axios";
-import { environment } from "../../environments/environments";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+// -Axios-
+import axios from "axios";
+// -Components-
+import { Navbar } from "../../components";
+// -Environments-
+import { environment } from "../../environments/environments";
+// -Icons-
 import { IoArrowBack } from "react-icons/io5";
-import { Link } from "react-router-dom";
 
 const AddContainer = () => {
   const [newContainer, setNewContainer] = useState({

@@ -19,8 +19,8 @@ const Navbar = () => {
   return (
     <div className="bg-emerald-600 border-b-2 border-black border-opacity-20 font-montserrat">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link to="/dashboard" className="flex items-center">
-          <FaRegTrashAlt className="text-white cursor-pointer mr-2" />
+        <Link to="/dashboard" className="flex items-center cursor-default">
+          <FaRegTrashAlt className="text-white mr-2" />
           <div className="self-center text-xl font-medium font-montserrat whitespace-nowrap text-white">
             Tap Cleaner
           </div>

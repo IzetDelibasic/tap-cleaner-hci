@@ -1,5 +1,8 @@
-import { ContactForm, Navbar } from "../../components";
+// -React-
 import { Link } from "react-router-dom";
+// -Components-
+import { ContactForm, Navbar } from "../../components";
+// -Icons-
 import { IoArrowBack } from "react-icons/io5";
 
 const AddQuery = () => {
